@@ -1,0 +1,35 @@
+using System;
+
+ /* 
+  2. Desarrollar un programa que permita calcular el perimetro de un cuadrado y el area de un rectangulo. 
+ */
+ 
+class CalculoGeometrico
+{
+    static void Main()
+    {
+        Console.WriteLine(" Cálculo de perímetro y área \n");
+
+        
+        Console.Write("Ingrese el lado del cuadrado (cm): ");
+        double lado = double.Parse(Console.ReadLine());
+
+        double perimetro = lado * 4;
+
+        Console.WriteLine($"\n Perímetro del cuadrado ");
+        Console.WriteLine($"Perímetro: {perimetro:F0}" + "cm");
+
+        
+        Console.Write("\nIngrese la base del rectángulo (cm): ");
+        double base_rect = double.Parse(Console.ReadLine());
+
+        Console.Write("Ingrese la altura del rectángulo (cm): ");
+        double altura = double.Parse(Console.ReadLine());
+
+        double area = base_rect * altura;
+
+        Console.WriteLine($"\n Área del rectángulo ");
+        Console.WriteLine($"Área: {area:F0}"+ "cm");
+    }
+}
+
