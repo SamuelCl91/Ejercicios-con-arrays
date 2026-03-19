@@ -1,5 +1,11 @@
 using System;
 
+/* 
+ 1. Desarrollar un programa que permita calcular las operaciones basicas entre 2 matrices 
+ 
+ -> Agregue colores a los datos del vector cuando de resultados 
+*/
+
 public class operacionesBasicasMatrices
 {
     const int MAX = 10;
