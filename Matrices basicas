@@ -1,0 +1,143 @@
+using System;
+
+public class operacionesBasicasMatrices
+{
+    const int MAX = 10;
+
+    static void Ingresar(int[,] m, int f, int c)
+    {
+        for (int i = 0; i < f; i++)
+            for (int j = 0; j < c; j++)
+            {
+                Console.Write($"[{i},{j}]: ");
+                m[i, j] = int.Parse(Console.ReadLine()!);
+            }
+    }
+    static ConsoleColor ColorPorNumero(int numero)
+    {
+        switch (numero)
+        {
+            case 1: return ConsoleColor.Red;
+            case 2: return ConsoleColor.Green;
+            case 3: return ConsoleColor.Yellow;
+            case 4: return ConsoleColor.Blue;
+            case 5: return ConsoleColor.Cyan;
+            case 6: return ConsoleColor.Magenta;
+            case 7: return ConsoleColor.DarkRed;
+            case 8: return ConsoleColor.DarkGreen;
+            case 9: return ConsoleColor.DarkYellow;
+            case 10: return ConsoleColor.DarkBlue;
+            default: return ConsoleColor.Gray;
+        }
+    }
+    static void Mostrar(int[,] m, int f, int c)
+    {
+        for (int i = 0; i < f; i++)
+        {
+            for (int j = 0; j < c; j++)
+            {
+                Console.ForegroundColor = ColorPorNumero(m[i, j]);
+                Console.Write(m[i, j] + " ");
+                Console.ResetColor();
+            }
+            Console.WriteLine();
+        }
+    }
+
+    static void Sumar(int[,] a, int[,] b, int[,] r, int f, int c)
+    {
+        for (int i = 0; i < f; i++)
+            for (int j = 0; j < c; j++)
+                r[i, j] = a[i, j] + b[i, j];
+    }
+
+    static void Restar(int[,] a, int[,] b, int[,] r, int f, int c)
+    {
+        for (int i = 0; i < f; i++)
+            for (int j = 0; j < c; j++)
+                r[i, j] = a[i, j] - b[i, j];
+    }
+
+    static void Multiplicar(int[,] a, int[,] b, int[,] r, int f, int c)
+    {
+        for (int i = 0; i < f; i++)
+            for (int j = 0; j < c; j++)
+                r[i, j] = a[i, j] * b[i, j];
+    }
+
+    public static void Main(string[] args)
+    {
+        int[,] A = new int[MAX, MAX], B = new int[MAX, MAX], R = new int[MAX, MAX];
+        int f, c;
+        int op;
+
+        do
+        {
+            Console.WriteLine("\n === Menú de operaciones basicas de matrices ===");
+            Console.WriteLine("1. Suma.");
+            Console.WriteLine("2. Resta.");
+            Console.WriteLine("3. Multiplicación.");
+            Console.WriteLine("4. Salir.");
+            Console.WriteLine("Opción: ");
+
+            int.TryParse(Console.ReadLine(), out op);
+
+            switch (op)
+            {
+                case 1:
+                    Console.Write("Filas y columnas: ");
+                    string[] entradaS = Console.ReadLine()!.Split();
+                    f = int.Parse(entradaS[0]);
+                    c = int.Parse(entradaS[1]);
+
+                    Console.WriteLine("Matriz A:");
+                    Ingresar(A, f, c);
+
+                    Console.WriteLine("Matriz B:");
+                    Ingresar(B, f, c);
+
+                    Sumar(A, B, R, f, c);
+                    Console.WriteLine("Resultado suma:");
+                    Mostrar(R, f, c);
+
+                    break;
+
+                case 2:
+
+                    Console.Write("Filas y columnas: ");
+                    string[] entradaR = Console.ReadLine()!.Split();
+                    f = int.Parse(entradaR[0]);
+                    c = int.Parse(entradaR[1]);
+
+                    Console.WriteLine("Matriz A:");
+                    Ingresar(A, f, c);
+
+                    Console.WriteLine("Matriz B:");
+                    Ingresar(B, f, c);
+
+                    Restar(A, B, R, f, c);
+                    Console.WriteLine("Resultado resta:");
+                    Mostrar(R, f, c);
+
+                    break;
+
+                case 3:
+                    Console.Write("Filas y columnas: ");
+                    string[] entradaM = Console.ReadLine()!.Split();
+                    f = int.Parse(entradaM[0]);
+                    c = int.Parse(entradaM[1]);
+
+                    Console.WriteLine("Matriz A:");
+                    Ingresar(A, f, c);
+
+                    Console.WriteLine("Matriz B:");
+                    Ingresar(B, f, c);
+
+                    Multiplicar(A, B, R, f, c);
+                    Console.WriteLine("Resultado multiplicación:");
+                    Mostrar(R, f, c);
+                    break;
+            }
+        } while (op != 4);
+    }
+}
